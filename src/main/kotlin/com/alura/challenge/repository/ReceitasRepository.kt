@@ -12,5 +12,6 @@ interface ReceitasRepository : JpaRepository<ReceitasModel, Int> {
     abstract fun save(id: Int);
     fun existsByDescricao(descricao: String): Boolean
     fun findByDescricao(descricao: LocalDateTime): Boolean
+    fun findByDescricaoContaining(descricao: String): List<ReceitasModel>
 
 }

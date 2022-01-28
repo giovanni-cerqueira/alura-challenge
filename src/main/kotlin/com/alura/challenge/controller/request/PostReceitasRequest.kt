@@ -19,9 +19,7 @@ data class PostReceitasRequest(
     var valor: Float,
 
     @field: NotNull(message = "Data inválido.")
-    var data: Date = java.sql.Date(System.currentTimeMillis()),
+    var data: Date = java.sql.Date(System.currentTimeMillis())
 
-    @JsonAlias("conta_id")
-    var contaId: Int
 ) {
 }

@@ -5,9 +5,8 @@ import com.alura.challenge.controller.request.PutDespesasRequest
 import com.alura.challenge.extension.toDespesasModel
 import com.alura.challenge.extension.toResponse
 
-import com.alura.challenge.model.DespesasModel
 import com.alura.challenge.response.DespesasResponse
-import com.alura.challenge.service.ContaUsuarioService
+import com.alura.challenge.service.CategoriaService
 import com.alura.challenge.service.DespesasService
 
 import org.springframework.http.HttpStatus
@@ -18,19 +17,19 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("despesas")
 class DespesasController(
-    val contaUsuarioService: ContaUsuarioService,
+    val categoriaService: CategoriaService,
     val despesasService: DespesasService
 ) {
 
     @GetMapping
-    fun getAll(): List<DespesasModel>{
-        return despesasService.getAll()
+    fun getAll(@RequestParam descricao: String?): List<DespesasResponse>{
+        return despesasService.getAll(descricao).map { it.toResponse() }
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody @Valid request: PostDespesasRequest){
-        val despesa = contaUsuarioService.findById(request.contaId)
+        val despesa = categoriaService.findById(request.categoriaId)
         despesasService.create(request.toDespesasModel(despesa))
     }
 
@@ -45,7 +44,7 @@ class DespesasController(
         despesasService.delete(id)
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{categoria}/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update (@PathVariable id: Int, @RequestBody @Valid despesas: PutDespesasRequest) {
      val despesaSalva = despesasService.findById(id)

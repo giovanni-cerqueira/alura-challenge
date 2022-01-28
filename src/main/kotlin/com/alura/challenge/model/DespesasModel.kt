@@ -24,8 +24,8 @@ data class DespesasModel(
     var data: Date = java.sql.Date(System.currentTimeMillis()),
 
     @ManyToOne
-    @JsonAlias("conta_id")
-    var contaId: ContaUsuarioModel? = null
+    @JsonAlias("categoria_id")
+    var categoriaId: CategoriaModel? = null
 ) {
 
 }

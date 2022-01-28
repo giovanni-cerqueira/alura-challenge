@@ -8,7 +8,7 @@ import com.alura.challenge.extension.toResponse
 import com.alura.challenge.model.ReceitasModel
 import com.alura.challenge.repository.ReceitasRepository
 import com.alura.challenge.response.ReceitasResponse
-import com.alura.challenge.service.ContaUsuarioService
+import com.alura.challenge.service.CategoriaService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -16,21 +16,18 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("receitas")
 class ReceitasController(
-    val receitasRepository: ReceitasRepository,
-    val receitasService: ReceitasService,
-    val contaUsuarioService: ContaUsuarioService
+    val receitasService: ReceitasService
 ) {
 
     @GetMapping
-    fun getAll(): List<ReceitasModel> {
-        return receitasService.getAll()
+    fun getAll(@RequestParam descricao: String?): List<ReceitasResponse> {
+        return receitasService.getAll(descricao).map { it.toResponse() }
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody @Valid request: PostReceitasRequest) {
-        val receita = contaUsuarioService.findById(request.contaId)
-        receitasService.create(request.toReceitasModel(receita))
+        receitasService.create(request.toReceitasModel())
     }
 
     @GetMapping("/{id}")

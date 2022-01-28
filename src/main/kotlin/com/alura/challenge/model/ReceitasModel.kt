@@ -21,11 +21,7 @@ class ReceitasModel(
     @Column
     @JsonFormat(pattern="dd-MM-yyyy")
     @Temporal(TemporalType.TIMESTAMP)
-    var data: Date = java.sql.Date(System.currentTimeMillis()),
-
-    @ManyToOne
-    @JsonAlias("conta_id")
-    var contaId: ContaUsuarioModel? = null
+    var data: Date = java.sql.Date(System.currentTimeMillis())
 
 ) {
 }

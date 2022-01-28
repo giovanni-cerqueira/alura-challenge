@@ -19,7 +19,7 @@ data class PostDespesasRequest (
     @field: NotNull(message = "Data inválido.")
     var data: Date = java.sql.Date(System.currentTimeMillis()),
 
-    @JsonAlias("conta_id")
-    var contaId: Int
+    @JsonAlias("categoria_id")
+    var categoriaId: Int
 ) {
 }

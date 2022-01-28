@@ -15,8 +15,11 @@ class ReceitasService(
    val receitasRepository: ReceitasRepository
 ) {
 
-    fun getAll(): List<ReceitasModel> {
-        return receitasRepository.findAll()
+    fun getAll(descricao: String?): List<ReceitasModel> {
+        descricao?.let {
+            return receitasRepository.findByDescricaoContaining(it)
+        }
+        return receitasRepository.findAll().toList()
     }
 
     fun create(receitas: ReceitasModel) {

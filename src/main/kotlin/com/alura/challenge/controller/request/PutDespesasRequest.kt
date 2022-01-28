@@ -19,8 +19,8 @@ data class PutDespesasRequest(
     @Temporal(TemporalType.TIMESTAMP)
     var data: Date = java.sql.Date(System.currentTimeMillis()),
 
-    @JsonAlias("conta_id")
-    var contaId: Int
+    @JsonAlias("categoria_id")
+    var categoriaId: Int
 
 ) {
 }

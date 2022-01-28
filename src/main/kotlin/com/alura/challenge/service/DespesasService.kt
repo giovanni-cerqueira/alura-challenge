@@ -4,16 +4,26 @@ import com.alura.challenge.model.DespesasModel
 import com.alura.challenge.repository.DespesasRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
-import java.util.*
 
 @Service
 class DespesasService(
     val despesasRepository: DespesasRepository
 ) {
 
-    fun getAll(): List<DespesasModel> {
+    fun getAll(descricao: String?): List<DespesasModel> {
+        descricao?.let{
+            return despesasRepository.findByDescricaoContaining(it)
+        }
         return despesasRepository.findAll().toList()
     }
+
+//    val despesas = mutableListOf<DespesasModel>()
+//    fun getAll(descricao: String?): List<DespesasModel> {
+//        descricao?.let{
+//            return despesas.filter { it.descricao.contains(descricao, true) }
+//        }
+//        return despesas
+//    }
 
     fun create(despesas: DespesasModel) {
         despesasRepository.save(despesas)

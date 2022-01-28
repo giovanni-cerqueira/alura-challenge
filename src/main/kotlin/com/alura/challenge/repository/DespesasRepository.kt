@@ -11,4 +11,5 @@ interface DespesasRepository : JpaRepository<DespesasModel, Int> {
 
     fun save(id: Int)
     fun existsByDescricao(descricao: String): Boolean
+    fun findByDescricaoContaining(descricao: String): List<DespesasModel>
 }

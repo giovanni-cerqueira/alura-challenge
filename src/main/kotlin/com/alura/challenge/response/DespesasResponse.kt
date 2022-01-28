@@ -1,9 +1,9 @@
 package com.alura.challenge.response
 
-import com.alura.challenge.model.ContaUsuarioModel
+import com.alura.challenge.model.CategoriaModel
 import java.util.*
 
-class DespesasResponse(
+data class DespesasResponse(
     var id: Int? = null,
 
     var descricao: String,
@@ -12,6 +12,6 @@ class DespesasResponse(
 
     var data: Date,
 
-    var contaId: ContaUsuarioModel? = null
+    var categoria_id: CategoriaModel? = null
 ) {
 }

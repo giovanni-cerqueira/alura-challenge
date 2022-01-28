@@ -16,9 +16,6 @@ class PutReceitasRequest(
 
     @field: NotNull(message = "Data inválido.")
     @Temporal(TemporalType.TIMESTAMP)
-    var data: Date = java.sql.Date(System.currentTimeMillis()),
-
-    @JsonAlias("conta_id")
-    var contaId: Int
+    var data: Date = java.sql.Date(System.currentTimeMillis())
 ) {
 }

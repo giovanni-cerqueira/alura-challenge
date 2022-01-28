@@ -1,27 +1,24 @@
 package com.alura.challenge.extension
 
 import com.alura.challenge.controller.request.*
-import com.alura.challenge.model.ContaUsuarioModel
+import com.alura.challenge.model.CategoriaModel
 import com.alura.challenge.model.DespesasModel
 import com.alura.challenge.model.ReceitasModel
 import com.alura.challenge.response.DespesasResponse
 import com.alura.challenge.response.ReceitasResponse
 
 
-fun PostContasRequest.toContaUsuarioModel(): ContaUsuarioModel {
-    return ContaUsuarioModel(
-        nome = this.nome,
-        email = this.email,
-        senha = this.senha
+fun PostCategoriaRequest.toCategoriaModel(): CategoriaModel {
+    return CategoriaModel(
+        titulo = this.titulo
     )
 }
 
-fun PostReceitasRequest.toReceitasModel(conta: ContaUsuarioModel): ReceitasModel {
+fun PostReceitasRequest.toReceitasModel(): ReceitasModel {
     return ReceitasModel(
         descricao = this.descricao,
         valor = this.valor,
-        data = this.data,
-        contaId = conta
+        data = this.data
     )
 }
 
@@ -30,27 +27,18 @@ fun PutReceitasRequest.toReceitasModel(previousValue: ReceitasModel): ReceitasMo
         id = previousValue.id,
         descricao = this.descricao,
         valor = this.valor,
-        data = this.data,
-        contaId = previousValue.contaId
+        data = this.data
     )
 }
 
-fun ReceitasModel.toResponse(): ReceitasResponse {
-    return ReceitasResponse(
-        id = this.id,
-        descricao = this.descricao,
-        valor = this.valor,
-        data = this.data,
-        contaId = this.contaId
-    )
-}
 
-fun PostDespesasRequest.toDespesasModel(conta: ContaUsuarioModel): DespesasModel {
+
+fun PostDespesasRequest.toDespesasModel(categoria: CategoriaModel): DespesasModel {
     return DespesasModel(
         descricao = this.descricao,
         valor = this.valor,
         data = this.data,
-        contaId = conta
+        categoriaId = categoria
     )
 }
 
@@ -60,12 +48,20 @@ fun PutDespesasRequest.toDespesasModel(previousValue: DespesasModel): DespesasMo
         descricao = this.descricao,
         valor = this.valor,
         data = this.data,
-        contaId = previousValue.contaId
+        categoriaId = previousValue.categoriaId
     )
 }
 
 fun DespesasModel.toResponse(): DespesasResponse {
     return DespesasResponse(
+        descricao = this.descricao,
+        valor = this.valor,
+        data = this.data
+    )
+}
+
+fun ReceitasModel.toResponse(): ReceitasResponse {
+    return ReceitasResponse(
         descricao = this.descricao,
         valor = this.valor,
         data = this.data
