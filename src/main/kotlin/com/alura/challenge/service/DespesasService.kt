@@ -1,6 +1,8 @@
 package com.alura.challenge.service
 
+import com.alura.challenge.model.CategoriaModel
 import com.alura.challenge.model.DespesasModel
+import com.alura.challenge.repository.CategoriaRepository
 import com.alura.challenge.repository.DespesasRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
@@ -14,7 +16,7 @@ class DespesasService(
         descricao?.let{
             return despesasRepository.findByDescricaoContaining(it)
         }
-        return despesasRepository.findAll().toList()
+        return despesasRepository.findAll()
     }
 
 //    val despesas = mutableListOf<DespesasModel>()
@@ -26,6 +28,9 @@ class DespesasService(
 //    }
 
     fun create(despesas: DespesasModel) {
+//        if(despesas.categoriaId == null){
+//            categoriaRepository.findByDescricaoIgnoreCase("Outras")
+//        }
         despesasRepository.save(despesas)
     }
 
@@ -52,4 +57,12 @@ class DespesasService(
         }
         return !despesasRepository.existsByDescricao(descricao)
     }
+
+//    fun checkSeCategoriaEstaNulo(despesas: DespesasModel, titulo: String) {
+//        if(despesas.categoriaId == null){
+//            categoriaRepository.findByDescricaoIgnoreCase("Outras")
+//        }
+//
+//        despesasRepository.save(despesas)
+//    }
 }

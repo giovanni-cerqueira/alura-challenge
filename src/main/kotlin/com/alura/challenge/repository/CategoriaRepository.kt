@@ -1,11 +1,13 @@
 package com.alura.challenge.repository
 
-import com.alura.challenge.controller.request.PostCategoriaRequest
 import com.alura.challenge.model.CategoriaModel
+import com.alura.challenge.model.DespesasModel
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 interface CategoriaRepository : JpaRepository<CategoriaModel, Int> {
-    abstract fun save(categoria: PostCategoriaRequest)
+    fun existsByTitulo(titulo: String): Boolean
+//    fun findByTituloId(id: Int)
 }

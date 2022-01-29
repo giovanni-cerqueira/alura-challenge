@@ -6,19 +6,34 @@ import org.springframework.stereotype.Service
 
 @Service
 class CategoriaService(
-    val contaUsuarioRepository: CategoriaRepository
+    val categoriaRepository: CategoriaRepository
 ) {
 
     fun getAll(): List<CategoriaModel> {
-        return contaUsuarioRepository.findAll()
+        return categoriaRepository.findAll()
     }
 
     fun findById(id: Int): CategoriaModel {
-        return contaUsuarioRepository.findById(id).orElseThrow()
+        return categoriaRepository.findById(id).orElseThrow()
     }
 
     fun create(conta: CategoriaModel) {
-        contaUsuarioRepository.save(conta)
+        categoriaRepository.save(conta)
+    }
+
+    fun delete(id: Int) {
+        categoriaRepository.deleteById(id)
+    }
+
+    fun update(categoria: CategoriaModel) {
+        if (!categoriaRepository.existsById(categoria.id!!)) {
+            throw Exception()
+        }
+        categoriaRepository.save(categoria)
+    }
+
+    fun checkCategoria(titulo: String): Boolean{
+        return !categoriaRepository.existsByTitulo(titulo)
     }
 
 }

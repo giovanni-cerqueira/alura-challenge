@@ -3,7 +3,7 @@ CREATE TABLE despesas (
 	descricao varchar(255) not null unique,
 	valor float not null,
 	data date not null,
-	id_categoria not not null,
+	id_categoria,
 	FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 

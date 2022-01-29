@@ -4,6 +4,7 @@ import com.alura.challenge.controller.request.PostDespesasRequest
 import com.alura.challenge.controller.request.PutDespesasRequest
 import com.alura.challenge.extension.toDespesasModel
 import com.alura.challenge.extension.toResponse
+import com.alura.challenge.model.DespesasModel
 
 import com.alura.challenge.response.DespesasResponse
 import com.alura.challenge.service.CategoriaService
@@ -44,7 +45,7 @@ class DespesasController(
         despesasService.delete(id)
     }
 
-    @PutMapping("/{categoria}/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update (@PathVariable id: Int, @RequestBody @Valid despesas: PutDespesasRequest) {
      val despesaSalva = despesasService.findById(id)

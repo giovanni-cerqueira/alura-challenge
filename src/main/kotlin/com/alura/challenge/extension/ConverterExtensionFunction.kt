@@ -14,6 +14,13 @@ fun PostCategoriaRequest.toCategoriaModel(): CategoriaModel {
     )
 }
 
+fun PutCategoriaRequest.toCategoriaModel(previousValue: CategoriaModel): CategoriaModel{
+    return CategoriaModel(
+        id = previousValue.id,
+        titulo = this.titulo
+    )
+}
+
 fun PostReceitasRequest.toReceitasModel(): ReceitasModel {
     return ReceitasModel(
         descricao = this.descricao,
@@ -54,14 +61,17 @@ fun PutDespesasRequest.toDespesasModel(previousValue: DespesasModel): DespesasMo
 
 fun DespesasModel.toResponse(): DespesasResponse {
     return DespesasResponse(
+        id = this.id,
         descricao = this.descricao,
         valor = this.valor,
-        data = this.data
+        data = this.data,
+        categoria_id = this.categoriaId
     )
 }
 
 fun ReceitasModel.toResponse(): ReceitasResponse {
     return ReceitasResponse(
+        id = this.id,
         descricao = this.descricao,
         valor = this.valor,
         data = this.data
