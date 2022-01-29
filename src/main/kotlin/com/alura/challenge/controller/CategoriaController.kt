@@ -24,7 +24,7 @@ class CategoriaController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody categoria: PostCategoriaRequest) {
+    fun create(@RequestBody @Valid categoria: PostCategoriaRequest) {
         categoriaService.create(categoria.toCategoriaModel())
     }
 
