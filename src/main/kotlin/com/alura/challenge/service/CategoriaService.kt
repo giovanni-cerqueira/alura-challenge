@@ -13,7 +13,7 @@ class CategoriaService(
         return categoriaRepository.findAll()
     }
 
-    fun findById(id: Int): CategoriaModel {
+    fun findById(id: Int = 8): CategoriaModel {
         return categoriaRepository.findById(id).orElseThrow()
     }
 

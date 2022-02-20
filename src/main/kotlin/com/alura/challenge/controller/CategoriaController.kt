@@ -2,9 +2,7 @@ package com.alura.challenge.controller
 
 import com.alura.challenge.controller.request.PostCategoriaRequest
 import com.alura.challenge.controller.request.PutCategoriaRequest
-import com.alura.challenge.controller.request.PutDespesasRequest
 import com.alura.challenge.extension.toCategoriaModel
-import com.alura.challenge.extension.toDespesasModel
 import com.alura.challenge.model.CategoriaModel
 import com.alura.challenge.service.CategoriaService
 import org.springframework.http.HttpStatus

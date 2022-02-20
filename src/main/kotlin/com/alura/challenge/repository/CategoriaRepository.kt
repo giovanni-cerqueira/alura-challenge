@@ -9,5 +9,6 @@ import java.util.*
 @Repository
 interface CategoriaRepository : JpaRepository<CategoriaModel, Int> {
     fun existsByTitulo(titulo: String): Boolean
+    fun findByTituloContaining(titulo: String)
 //    fun findByTituloId(id: Int)
 }

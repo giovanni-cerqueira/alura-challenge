@@ -2,8 +2,11 @@ package com.alura.challenge.model
 
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonFormat
+import org.springframework.lang.Nullable
 import java.util.*
 import javax.persistence.*
+
+var categoriaNula: CategoriaModel? = CategoriaModel(8, "Outras")
 
 @Entity(name = "despesas")
 data class DespesasModel(
@@ -25,7 +28,8 @@ data class DespesasModel(
 
     @ManyToOne
     @JsonAlias("categoria_id")
-    var categoriaId: CategoriaModel? = null
+    @Nullable
+    var categoriaId: CategoriaModel? = CategoriaModel(8, "Outras")
 ) {
 
 }

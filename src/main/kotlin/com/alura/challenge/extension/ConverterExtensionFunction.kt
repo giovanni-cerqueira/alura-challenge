@@ -39,8 +39,7 @@ fun PutReceitasRequest.toReceitasModel(previousValue: ReceitasModel): ReceitasMo
 }
 
 
-
-fun PostDespesasRequest.toDespesasModel(categoria: CategoriaModel): DespesasModel {
+fun PostDespesasRequest.toDespesasModel(categoria: CategoriaModel? = CategoriaModel(8, "Outras")): DespesasModel {
     return DespesasModel(
         descricao = this.descricao,
         valor = this.valor,

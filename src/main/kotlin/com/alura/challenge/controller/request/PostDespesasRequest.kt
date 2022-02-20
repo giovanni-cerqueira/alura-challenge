@@ -1,14 +1,15 @@
 package com.alura.challenge.controller.request
 
 
+import com.alura.challenge.model.CategoriaModel
 import com.alura.challenge.validation.despesas.DescriptionDespesasAvailable
 import com.fasterxml.jackson.annotation.JsonAlias
 import org.springframework.lang.Nullable
 import java.util.*
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
+data class PostDespesasRequest(
 
-data class PostDespesasRequest (
 
     @field: NotEmpty(message = "Descrição inválida.")
     @DescriptionDespesasAvailable
@@ -21,6 +22,7 @@ data class PostDespesasRequest (
     var data: Date = java.sql.Date(System.currentTimeMillis()),
 
     @JsonAlias("categoria_id")
-    var categoriaId: Int
+    @field: Nullable
+    var categoriaId: Int? = null
 ) {
 }

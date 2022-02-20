@@ -1,6 +1,5 @@
 package com.alura.challenge.service
 
-import com.alura.challenge.model.CategoriaModel
 import com.alura.challenge.model.DespesasModel
 import com.alura.challenge.repository.CategoriaRepository
 import com.alura.challenge.repository.DespesasRepository
@@ -9,7 +8,8 @@ import java.time.LocalDateTime
 
 @Service
 class DespesasService(
-    val despesasRepository: DespesasRepository
+    val despesasRepository: DespesasRepository,
+    val categoriaRepository: CategoriaRepository
 ) {
 
     fun getAll(descricao: String?): List<DespesasModel> {
@@ -28,9 +28,9 @@ class DespesasService(
 //    }
 
     fun create(despesas: DespesasModel) {
-//        if(despesas.categoriaId == null){
-//            categoriaRepository.findByDescricaoIgnoreCase("Outras")
-//        }
+        if(despesas.categoriaId == null){
+            categoriaRepository.findByTituloContaining("Outras")
+        }
         despesasRepository.save(despesas)
     }
 
@@ -57,12 +57,4 @@ class DespesasService(
         }
         return !despesasRepository.existsByDescricao(descricao)
     }
-
-//    fun checkSeCategoriaEstaNulo(despesas: DespesasModel, titulo: String) {
-//        if(despesas.categoriaId == null){
-//            categoriaRepository.findByDescricaoIgnoreCase("Outras")
-//        }
-//
-//        despesasRepository.save(despesas)
-//    }
 }

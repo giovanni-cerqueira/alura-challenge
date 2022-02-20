@@ -12,4 +12,5 @@ data class CategoriaModel(
     @Column
     var titulo: String
 ) {
+
 }
